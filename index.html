@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no,maximum-scale=1.0,minimum-scale=1.0">
+    <title>Document</title>
+    <style>
+        table {
+            width: 500px;
+            margin: 100px auto;
+            border-collapse: collapse;
+            text-align: center;
+        }
+        
+        td,
+        th {
+            border: 1px solid #333;
+        }
+        
+        thead tr {
+            height: 40px;
+            background-color: #ccc;
+        }
+        a {
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <table cellpadding="10">
+        <thead>
+            <tr>
+                <th>姓名</th>
+                <th>科目</th>
+                <th>成绩</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+    <script>
+        // 创建数据
+        var datas = [{
+            name:'张三',
+            course:'javascript',
+            score:95
+        },{
+            name:'李四',
+            course:'javascript',
+            score:98
+        },{
+            name:'王五',
+            course:'javascript',
+            score:99
+        },{
+            name:'赵六',
+            course:'javascript',
+            score:93
+        }
+        ]
+        // 获取元素
+        var table = document.querySelector('table');
+        var tbody = document.querySelector('tbody');
+        // 给所有数据添加tr行
+        for(var i = 0; i < datas.length; i++) {
+            var tr = document.createElement('tr');
+            // 添加到tbody里面
+            tbody.appendChild(tr);
+            // 给所有数据添加td列,遍历对象得到属性
+            for(var k in datas[i]) {
+                var td = document.createElement('td');
+                // 添加到tr里面
+                tr.appendChild(td);
+                // 将td的文本内容添加到td列里
+                td.innerHTML = datas[i][k];
+            }
+            // 在tr里添加td
+            var td = document.createElement('td');
+            // 将td加到tr里面
+            tr.appendChild(td);
+            // 给所有的td添加删除链接
+            td.innerHTML = "<a href='javascript:;'>删除</a>";
+        }
+        var as = document.querySelectorAll('a');
+        // 遍历所有的a
+        for(var i = 0; i < as.length; i++) {
+            // 点击事件
+            as[i].onclick = function() {
+                // 删除对应tr
+                tbody.removeChild(this.parentNode.parentNode);
+            }
+        }
+    </script>
+</body>
+</html>
